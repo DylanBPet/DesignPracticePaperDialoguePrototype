@@ -329,7 +329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Want something from me me Kiddo?
+  m_text: Want something from me Kid?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e04aa31ecd9923e4c89785dbf4dbc373, type: 2}
   m_sharedMaterial: {fileID: -1109155965252065286, guid: e04aa31ecd9923e4c89785dbf4dbc373, type: 2}
@@ -511,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 310556849}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3492813, y: 1.0129368, z: -10}
+  m_LocalPosition: {x: -0.3490982, y: 1.0129368, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -917,7 +917,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.050368965, y: 0.01705, z: -10}
+  m_LocalPosition: {x: -0.08745, y: 0.01722002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1877,7 +1877,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965096174}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1918,9 +1918,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.20945978, y: 8.331097}
       - {x: -13.309189, y: 8.320858}
-      - {x: -13.42942, y: -11.9751835}
-      - {x: 0.14692825, y: -12.123111}
-      - {x: 13.334166, y: -12.173697}
+      - {x: -13.5048, y: -12.12594}
+      - {x: 0.4484467, y: -12.047732}
+      - {x: 13.334166, y: -11.947558}
       - {x: 13.30919, y: 8.268493}
   m_UseDelaunayMesh: 1
 --- !u!1 &1969908094
