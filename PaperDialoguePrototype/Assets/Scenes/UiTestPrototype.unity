@@ -394,7 +394,8 @@ MonoBehaviour:
   paperChoiceCanvas: {fileID: 1303207814}
   backpack: {fileID: 1020501859}
   paper: {fileID: 1743484514}
-  objectMoveSpeed: 0.3
+  objectMoveSpeed: 1
+  mousePos: {x: 0, y: 0}
 --- !u!4 &415062425
 Transform:
   m_ObjectHideFlags: 0

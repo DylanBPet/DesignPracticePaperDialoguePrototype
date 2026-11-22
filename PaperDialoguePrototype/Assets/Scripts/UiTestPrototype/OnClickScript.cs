@@ -19,6 +19,10 @@ public class OnClickScript : MonoBehaviour
 
     Vector2 backpackOrigin;
     public float objectMoveSpeed;
+
+    public Vector2 mousePos;
+
+    bool paperClickable = false;
     void Start()
     {
         backpackOrigin = backpack.transform.position;
@@ -27,12 +31,11 @@ public class OnClickScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-          
-                firstClick++;
-            
-            
+            firstClick++; 
         }
 
         if (firstClick == 1)
@@ -50,7 +53,11 @@ public class OnClickScript : MonoBehaviour
             choiceCanvas.SetActive(true);
         }
 
-
+        SpriteRenderer paperSr = paper.GetComponent<SpriteRenderer>();
+        if (paperSr.bounds.Contains(mousePos) && Mouse.current.leftButton.wasPressedThisFrame && paperClickable)
+        {
+            StartCoroutine(getPaperReady());
+        }
 
     }
 
@@ -71,18 +78,24 @@ public class OnClickScript : MonoBehaviour
     public IEnumerator backpackEnum()
     {
         float t = 0;
+        Vector2 start = backpack.transform.position;
         while (t < 1)
         {
             t += Time.deltaTime * objectMoveSpeed;
             //move backpack onto screen
-            backpack.transform.position = Vector2.Lerp(backpack.transform.position, Vector2.zero, t);
-            
+            backpack.transform.position = Vector2.Lerp(start, Vector2.zero, t);
             yield return null;
         }
+        backpack.transform.position = Vector2.zero;
         Debug.Log("backpack in position");
+        paperClickable = true;
+        yield return null;
+    }
 
-        t = 0;
-
+    public IEnumerator getPaperReady()
+    {
+        paperClickable = false;
+        float t = 0;
         //move it offscreen but leave paper
         while (t < 1)
         {
@@ -91,7 +104,6 @@ public class OnClickScript : MonoBehaviour
             t += Time.deltaTime * objectMoveSpeed;
             yield return null;
         }
-        yield return new WaitForSeconds(0.5f);
         paper.SetActive(false);
         paperChoiceCanvas.SetActive(true);
 
