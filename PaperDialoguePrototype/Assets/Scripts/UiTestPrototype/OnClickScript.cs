@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,13 +12,16 @@ public class OnClickScript : MonoBehaviour
     //switching the canvases 
     public GameObject textCanvas;
     public GameObject choiceCanvas;
+    public GameObject paperChoiceCanvas;
 
-    //answer yes or no
-    bool? wantQuestions = null;
+    public GameObject backpack;
+    public GameObject paper;
 
+    Vector2 backpackOrigin;
+    public float objectMoveSpeed;
     void Start()
     {
-        
+        backpackOrigin = backpack.transform.position;
     }
 
     // Update is called once per frame
@@ -25,7 +29,10 @@ public class OnClickScript : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            firstClick++;
+          
+                firstClick++;
+            
+            
         }
 
         if (firstClick == 1)
@@ -43,16 +50,51 @@ public class OnClickScript : MonoBehaviour
             choiceCanvas.SetActive(true);
         }
 
-        //when they either shake their head no or reach for their paper
-        if (wantQuestions == true)
-        {
-            wantQuestions = true;
-        }
-        else if (wantQuestions == false)
-        {
-            wantQuestions = null;
-            firstClick = 1;
-        }
+
 
     }
+
+    public void StartBackpackAnim()
+    {
+        choiceCanvas.SetActive(false);
+        //start backpack coroutine
+        StartCoroutine(backpackEnum());
+    }
+
+    public void Reset()
+    {
+        firstClick = 1;
+        textCanvas.SetActive(true);
+        choiceCanvas.SetActive(false);
+    }
+
+    public IEnumerator backpackEnum()
+    {
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime * objectMoveSpeed;
+            //move backpack onto screen
+            backpack.transform.position = Vector2.Lerp(backpack.transform.position, Vector2.zero, t);
+            
+            yield return null;
+        }
+        Debug.Log("backpack in position");
+
+        t = 0;
+
+        //move it offscreen but leave paper
+        while (t < 1)
+        {
+            paper.transform.position = Vector2.zero;
+            backpack.transform.position = Vector2.Lerp(backpack.transform.position, backpackOrigin, t);
+            t += Time.deltaTime * objectMoveSpeed;
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.5f);
+        paper.SetActive(false);
+        paperChoiceCanvas.SetActive(true);
+
+    }
+
 }
