@@ -119,9 +119,7 @@ public class HoveredCardEffects : MonoBehaviour
         bool lerpComplete = false;
 
         while (hoveredCardIndex == index)
-        {
-            //rotationLerpt = rotationLerpt / 2;
-           
+        { 
             //make it shake slightly
             if (lerpComplete == false)
             {
